@@ -1,0 +1,107 @@
+<html>
+<head>
+  <title>Server status for $SERVER_NAME</title>
+  <style type="text/css">
+    body {  font-family: verdana, san-serif;
+			font-size: 90%; }
+	table { border: 1px solid black;
+			font-size: 90% }
+	div { font-size: 90% }
+  </style>
+  <script type="text/javascript">
+// Popup window code
+function newPopup(url) {
+	popupWindow = window.open(
+		url,'popUpWindow','height=650,width=570,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+  </script>
+
+</head>
+<body>
+
+<h2>$SERVER_NAME</h2>
+<p>Server running on port $SERVER_PORT.
+<br><br>
+<input type="button" value="Refresh" onClick="window.location.reload()">
+<br><br>
+
+<span style="font-size: 120%; font-weight: bold">$SERVER_PLAYER_COUNT Player(s) In-Game</span>
+
+$_START<div id="user-info"><a href="JavaScript:newPopup('/?page=player_info&player=$SERVER_PLAYER_LIST_PLAYER_#');">$SERVER_PLAYER_LIST_PLAYER_#</a></div>
+$_END
+
+<br><br>
+<table border="0">
+<tr><th colspan="2" align="center">Current World</th></tr>
+<tr><td><b>World Name</b></td><td>$WORLD_NAME</td></tr>
+<tr><td><b>Size</b></td><td>$WORLD_SIZE</td></tr>
+<tr><td><b>Current Time</td><td>$WORLD_TIME</td></tr>
+<tr><td><b>Daytime?</b></td><td>$WORLD_DAYTIME</td></tr>
+<tr><td><b>Bloodmoon?</b></td><td><a href="/do?action=bloodmoon">$WORLD_BLOODMOON</a></td></tr>
+<tr><td><b>Invasion Size</b></td><td>$WORLD_INVASIONSIZE</td></tr>
+</table>
+<br>
+
+<form action="/do" method="post">
+<input type="hidden" name="action" value="butcher">
+<input type="submit" value="Butcher Enemies">
+</form>
+
+<form action="/do" method="post">
+<input type="hidden" name="action" value="meteor">
+<input type="submit" value="Spawn a Meteor">
+</form>
+
+<div border="1">
+<form action="/do" method="post">
+  <input type="hidden" name="action" value="broadcast">
+  Broadcast a message to the server 
+  <input type="text" name="text">
+  <input type="submit">
+</form>
+</div>
+
+<table border="1">
+<tr><th colspan="3" align="center">World Files</th></tr>
+<tr><th>Date Modified</th><th>Filename</th><th>File size in MB</th></tr>
+$_START
+<tr><td>$FILES_WORLD_#_DATEMODIFIED</td>
+<td><a href="javascript:postwith('/do_backup',{file:'$FILES_WORLD_#_NAME'})">$FILES_WORLD_#_NAME</td>
+<td>$FILES_WORLD_#_SIZE</td></tr>
+$_END
+</table>
+
+<br><br>
+
+<div style="border: 1px solid black; width: 400px;">
+<tt>
+$FUNC_LOG_TAIL
+</tt>
+<br><br>
+<form action="/do" method="post">
+  <input type="hidden" name="action" value="cmd">
+  <b>Send a command to the server console</b> <input type="text" name="text"><input type="submit">
+</form>
+</div>
+
+<br>
+<p>Logged in as $FUNC_USERNAME. <a href="/logout">Log out</a>
+<p>Generated $FUNC_TIMESTAMP
+
+
+</body>
+</html>

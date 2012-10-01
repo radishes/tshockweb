@@ -1,0 +1,204 @@
+# -- TShock web interface configuration --
+#      http://radishes.org/tshockweb
+#
+#
+# Use '#' to comment out the rest of a line. If you're changing a setting, you may want
+# to comment out the default value, to have something to reference in the future.
+#
+# Do not use backslashes on paths, even for Windows paths. Use only 
+# slashes ('/') in any path string. UNC paths are possible with '//servername/share'.
+#
+# TShockweb must be restarted for any changes to take effect.
+#
+
+[global]
+# CherryPy settings for servicing HTTP requests.
+server.socket_host = '$IP'  # A string containing an IP address. '0.0.0.0' means listen on all IPs.
+server.socket_port = $PORT  # A number. Port on which to listen for web traffic.
+server.thread_pool = 10
+
+tools.sessions.on = True	# Must be True or users won't be able to login.
+tools.sessions.storage_type = 'file'	# Can be changed to store in memory, look it up in CherryPy documentation.
+tools.sessions.storage_path = '.'	# A string describing the path in which to store user session information.
+tools.sessions.timeout = 60
+engine.autoreload_on = False
+
+[server]
+#########################################
+# Introduce the web interface to TShock.
+# These settings are going to be specific to your TShock server!
+#########################################
+api_url = '$API_URL' # A string. The URL used to communicate with the TShock REST API.
+
+# If you don't have access to the server log from the TShockweb server, then don't use the FUNC_LOG_TAIL token.
+log_path = '$TSHOCK_LOG_PATH' # A string. Path to the TShock log so we can show snippets of the log as a token.
+
+# these settings control the behavior of the WORLD_FILES tokens. If you don't have access to the game files from the webserver, comment these out and don't use the associated tokens.
+world_path = '$TSHOCK_WORLD_PATH' #  String. Location of the saved world files. Can be a local or UNC path.
+world_backup_path = '$TSHOCK_WORLD_BACKUP_PATH' # String. Path to which world files are backed up, when requested.
+file_backup_buffer = 10 # A number. The duration, in seconds, to disallow backups after a backup is executed.
+
+
+# *** It is highly recommended to set caching durations to no lower than 1. *** The default is 10 seconds, 
+# for no reason in particular. Ten seconds is fine, and should work well for any server configuration, but
+# you can also tune the cache manually, if you want, using the following procedure:
+# To tune the cache for your specific performance conditions, first set the default cache time to some low 
+# number, say, 2. Then run TShockweb with that setting when your server is pretty busy. Test TShockweb 
+# by clicking around the interface and loading player info, etc. Also watch the TShock server. If TShockweb and 
+# your TShock game server itself are both snappy and responsive, then you're done. If pages take longer to 
+# load than you'd like, and/or if your TShock server's performance starts to suffer, then increase 
+# the default_cache by 1 or 2 seconds at a time and try again until you get good performance from both
+# TShock and TShockweb. I set it a little higher, 10 seconds, to reduce load on the TShock server.
+default_cache = 10		# A number. The amount of time, in seconds, to cache data unless otherwise specified.
+
+[ui]
+# User interface and user experience.
+page_argument = 'page' # A string. URL argument used to call a template. For example if this is set to 'page', then the template called 'status' would be called with this URL: '/?page=status'
+default_page = 'index' # A string. The default template to send the user to if they give a bad argument or we are otherwise confused. This template must not require authentication.
+login_fail_redirect = 'index' # A string. The template to which the user will be redirected if their login attempt fails.
+login_success_redirect = 'status' # A string. The template to which the user will be redirected if their login attempt is successful.
+
+[static]
+# Paths to static content for the UI.
+templates_path = 'templates/simple' # can be relative
+#templates_path = 'templates/tshockwebadmin'
+items_images_path = 'images/items' # can be relative
+buffs_images_path = 'images/buffs' # can be relative
+
+[templates]
+# Template information.
+# 'file': String representing the filename of this template.
+# 'auth': Boolean (True/False) - does this template require the user to be logged in to view it?
+index = { 'file': 'index.tmpl',  'auth': False }
+status = { 'file': 'status.tmpl', 'auth': True }
+smallstatus = { 'file': 'smallstatus.tmpl', 'auth': True }
+player_info = { 'file': 'player_info.tmpl', 'auth': True, 'context_arg': 'player' }
+#index = { 'file': 'index.html',  'auth': False }
+#status = { 'file': 'status.html', 'auth': True }
+#console = { 'file': 'console.html', 'auth': True }
+#backups = { 'file': 'backups.html', 'auth': True }
+#userinfo = { 'file': 'userinfo.html', 'auth': True, 'context_arg': 'player' }
+
+[/]
+#########################################
+# Create the root of the static content path tree.
+# This setting is specific to your TShockweb server and must be set properly!
+#########################################
+tools.staticdir.root = '$STATIC_PATH'
+
+[/images/items]
+tools.staticdir.on = True
+tools.staticdir.dir = 'images/items'
+
+[/images/buffs]
+tools.staticdir.on = True
+tools.staticdir.dir = 'images/buffs'
+
+# for the tshockwebadmin template from Gravemind
+[/images]
+tools.staticdir.on = True
+tools.staticdir.dir = 'templates/tshockwebadmin/images'
+[/images/icons]
+tools.staticdir.on = True
+tools.staticdir.dir = 'templates/tshockwebadmin/images/icons'
+[/static]
+tools.staticdir.on = True
+tools.staticdir.dir = 'templates/tshockwebadmin/static'
+
+[ids]
+# You probably don't want to mess with this.
+# buff_ids maps each buff ID to the name of that buff.
+buff_ids = {'0': 'None',
+            '1': 'Obsidian_Skin',
+            '2': 'Regeneration',
+            '3': 'Swiftness',
+            '4': 'Gills',
+            '5': 'Ironskin',
+            '6': 'Mana_Regeneration',
+            '7': 'Magic_Power',
+            '8': 'Featherfall',
+            '9': 'Spelunker',
+            '10': 'Invisibility',
+            '11': 'Shine',
+            '12': 'Night_Owl',
+            '13': 'Battle',
+            '14': 'Thorns',
+            '15': 'Water_Walking',
+            '16': 'Archery',
+            '17': 'Hunter',
+            '18': 'Gravitation',
+            '19': 'Orb_of_Light',
+            '20': 'Poisoned',
+            '21': 'Potion_Sickness',
+            '22': 'Darkness',
+            '23': 'Cursed',
+            '24': 'On_Fire!',
+            '25': 'Tipsy',
+            '26': 'Well_Fed',
+            '27': 'Fairy',
+            '28': 'Werewolf',
+            '29': 'Clairvoyance',
+            '30': 'Bleeding',
+            '31': 'Confused',
+            '32': 'Slow',
+            '33': 'Weak',
+            '34': 'Merfolk',
+            '35': 'Silenced',
+            '36': 'Broken_Armor',
+            '37': 'Horrified',
+            '38': 'The_Tongue',
+            '39': 'Cursed_Inferno',
+            '40': 'Pet_Bunny' }
+			
+[special tokens]
+token_prefix = '$' # String. Symbol that defines the start of a token. Escape with double-symbol ('$$')
+pattern_enumerator = '#' # String. Symbol for denoting that a token should be enumerated.
+pattern_start_token = '_START' # String. Token marking the beginning of a pattern.
+pattern_end_token = '_END' # String. Token marking the end of a pattern.
+
+
+[tokens]
+# These tokens can be prefixed with the token_prefix configured in [special tokens] 
+# ('$' by default) and used in templates to create dynamic pages.
+# Example usage: '$SERVER_PORT' in a template will be processed on request and replaced with the TShock server's port ('7777').
+SERVER_IP = { 'source': 'text', 'value': 'terraria.radishes.org:7777' }
+
+PLAYER_NICKNAME = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'nickname' }
+PLAYER_USERNAME = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'username' }
+PLAYER_IP = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'ip' }
+PLAYER_GROUP = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'group' }
+PLAYER_POSITION = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'position' }
+PLAYER_BUFFS = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'buffs' }
+PLAYER_BUFF_#_NAME = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'buffs', 'processor': 'buff_name' }
+PLAYER_INVENTORY = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'inventory' }
+PLAYER_ITEM_#_NAME = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'inventory', 'processor': 'inventory_name' }
+PLAYER_ITEM_#_IMAGE = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'inventory', 'processor': 'inventory_image' }
+PLAYER_ITEM_#_QTY = { 'source': 'api', 'endpoint': '/v2/players/read', 'parameter': 'player', 'key': 'inventory', 'processor': 'inventory_qty' }
+
+
+WORLD_NAME = { 'source': 'api', 'endpoint': '/world/read', 'key': 'name', 'cache': 30 }
+WORLD_SIZE = { 'source': 'api', 'endpoint': '/world/read', 'key': 'size', 'cache': 30 }
+WORLD_TIME = { 'source': 'api', 'endpoint': '/world/read', 'key': 'time' }
+WORLD_DAYTIME = { 'source': 'api', 'endpoint': '/world/read', 'key': 'daytime' }
+WORLD_BLOODMOON = { 'source': 'api', 'endpoint': '/world/read', 'key': 'bloodmoon' }
+WORLD_INVASIONSIZE = { 'source': 'api', 'endpoint': '/world/read', 'key': 'invasionsize' }
+
+SERVER_NAME = { 'source': 'api', 'endpoint': '/status', 'key': 'name', 'cache': 30 }
+SERVER_PORT = { 'source': 'api', 'endpoint': '/status', 'key': 'port', 'cache': 30 }
+SERVER_PLAYER_COUNT = { 'source': 'api', 'endpoint': '/status', 'key': 'playercount' }
+SERVER_PLAYER_LIST = { 'source': 'api', 'endpoint': '/status', 'key': 'players'  }
+SERVER_PLAYER_LIST_PLAYER_# = { 'source': 'api', 'endpoint': '/status', 'key': 'players', 'processor': 'commalist' }
+
+FILES_WORLD_#_DATEMODIFIED = { 'source': 'function', 'func': 'world_files_table', 'key': 'mdate', 'processor': 'filter_world_files' }
+FILES_WORLD_#_NAME = { 'source': 'function', 'func': 'world_files_table', 'key': 'filename', 'processor': 'filter_world_files' }
+FILES_WORLD_#_SIZE = { 'source': 'function', 'func': 'world_files_table', 'key': 'size_mb', 'processor': 'filter_world_files' }
+#FILES_WORLD_#_TOTALSIZE = { 'source': 'function', 'func': 'world_files_table', 'key': 'total_size_mb', 'processor': 'filter_world_files' }
+
+FUNC_USERNAME = { 'source': 'function', 'func': 'get_session_username' }
+FUNC_TIMESTAMP = { 'source': 'function', 'func': 'timestamp' }
+FUNC_LOG_TAIL = { 'source': 'function', 'func': 'log_tail', 'post_processor': 'line_break_to_br' }
+
+
+
+
+

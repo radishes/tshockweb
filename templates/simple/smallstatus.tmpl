@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>Server status for $SERVER_NAME</title>
+  <style type="text/css">
+    body {  font-family: verdana, san-serif;
+			font-size: 75%; }
+	table { border: 1px solid black;
+			font-size: 75% }
+	div { font-size: 75% }
+  </style>
+  <script type="text/javascript">
+// Popup window code
+function newPopup(url) {
+	popupWindow = window.open(
+		url,'popUpWindow','height=650,width=500,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+}
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+  </script>
+
+</head>
+<body>
+
+<h2>$SERVER_NAME</h2>
+<p>$SERVER_IP:$SERVER_PORT.
+<br>
+<input type="button" value="Refresh" onClick="window.location.reload()">
+<br>
+
+<span style="font-size: 120%; font-weight: bold">$SERVER_PLAYER_COUNT Player(s) In-Game</span>
+
+$_START<div id="user-info"><a href="JavaScript:newPopup('/?page=player_info&player=$SERVER_PLAYER_LIST_PLAYER_#');">$SERVER_PLAYER_LIST_PLAYER_#</a></div>
+$_END
+
+
+<br><br>
+<table border="0">
+<tr><th colspan="2" align="center">Current World</th></tr>
+<tr><td><b>World Name</b></td><td>$WORLD_NAME</td></tr>
+<tr><td><b>Size</b></td><td>$WORLD_SIZE</td></tr>
+<tr><td><b>Current Time</td><td>$WORLD_TIME</td></tr>
+<tr><td><b>Daytime?</b></td><td>$WORLD_DAYTIME</td></tr>
+<tr><td><b>Bloodmoon?</b></td><td>$WORLD_BLOODMOON</td></tr>
+</table>
+<br>
+
+
+<br>
+<p>Logged in as $FUNC_USERNAME. <a href="/logout">Log out</a>
+<p>Generated $FUNC_TIMESTAMP
+
+
+</body>
+</html>

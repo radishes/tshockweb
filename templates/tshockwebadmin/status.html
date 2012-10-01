@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+<head>
+    <title>TshockMyAdmin</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="Gravemind" />
+    <meta name="keywords" content="" />
+
+    <link href="static/style.css" type="text/css" rel="stylesheet" />
+	<script src="static/script.js"></script>
+</head>
+
+<body>
+<div id="content">
+   <div id="navigation">
+    <a href="/?page=status">Home</a> | <a href="http://tshock.co/xf/index.php?forum/">Tshock Forums</a> | <a href="https://tshock.atlassian.net/wiki/display/TSHOCKPLUGINS/Home">Wiki</a> | <a href="http://ci.tshock.co/">Latest Builds</a>
+    </div>
+        <div id="logo">
+        <img src="images/newlogo.png" height="80px" />
+            <p style="color: #000"><img src="images/icons/user_orange.png" />Logged in as $FUNC_USERNAME. <a style="color: #ce7c03" href="/logout">Log out</a></p>
+        </div>
+            <div id="subbar"></div>
+            <div id="nav-column">
+              <div id="navtop">
+              Navigation
+            </div>
+             <div id="navcontainer">
+             <ul>
+                    <li><a href="/?page=status"><img src="images/icons/computer.png" /> Server Info</a></li>
+                    <li><a href="/?page=console"><img src="images/icons/comments.png" /> Console</a></li>
+                    <li><a href="/?page=backups"><img src="images/icons/disk.png" /> Backups</a></li>
+            </ul>
+           </div>
+        </div>
+        <div id="news">
+            <div id="newstop">
+                    Serverinfo
+                        <input type="button" value="Refresh" style="
+                                                color: #ce7c03;
+                                                background-color: #f9bc6d;
+                                                float: right;
+                                                font-size: 11px;
+                                                margin-right: 10px;
+                                                margin-top: 5px;
+                                                height: 20px;
+                                                border: solid 1px #ce7c03;
+                                                border-bottom-left-radius: 8px;
+                                                border-top-right-radius: 8px;"
+                                                onClick="window.location.reload()">                          
+            </div>
+                                <h1>$SERVER_NAME</h1>
+                 <hr />
+            <table border="0" style="margin-left: 10px;">
+                <tr><th colspan="2" align="center">Current World</th></tr>
+                <tr><td><b>World Name</b></td><td>$WORLD_NAME</td></tr>
+                <tr><td><b>Size</b></td><td>$WORLD_SIZE</td></tr>
+                <tr><td><b>Current Time</td><td>$WORLD_TIME</td></tr>
+                <tr><td><b>Daytime?</b></td><td>$WORLD_DAYTIME</td></tr>
+                <tr><td><b>Bloodmoon?</b></td><td><a href="/do?action=bloodmoon" style="text-decoration: underline; color: #222;">$WORLD_BLOODMOON</a></td></tr>
+                <tr><td><b>Invasion Size</b></td><td>$WORLD_INVASIONSIZE</td></tr>
+            </table>
+			
+			  <div style="font-size: 80%; padding-left: 20px; padding-bottom: 20px; padding-top: 20px;">
+				<span style="font-size: 120%; font-weight: bold;">Last seen web users</span>
+				$_START
+				<div><b>$FUNC_LAST_SEEN_#_NAME</b> &nbsp;&nbsp; <i>$FUNC_LAST_SEEN_#_TIME</i></div>
+				$_END
+			  </div>
+           </div><br>
+                              <div id="playerlist">
+            <div id="navtop">
+                $SERVER_PLAYER_COUNT Player(s)
+            </div>
+		$_START
+        <p style="margin-left: 10px;
+                  margin-top: 10px;">
+				  <a href="/?page=userinfo&player=$SERVER_PLAYER_LIST_PLAYER_#" style="color: #222; font-size: 120%;">$SERVER_PLAYER_LIST_PLAYER_#</a></p>
+		$_END
+        </div>
+        <div id="footer">Template and Design by Gravemind | Zombiehouse 2008-2011</div>
+    </div>
+</div>
+</body>
+</html>

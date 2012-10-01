@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+<head>
+    <title>TshockMyAdmin</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="Gravemind" />
+    <meta name="keywords" content="" />
+
+    <link href="static/style.css" type="text/css" rel="stylesheet" />
+	<script src="static/script.js"></script>
+</head>
+
+<body>
+<div id="content">
+   <div id="navigation">
+    <a href="/?page=status">Home</a> | <a href="http://tshock.co/xf/index.php?forum/">Tshock Forums</a> | <a href="hhttps://tshock.atlassian.net/wiki/display/TSHOCKPLUGINS/Home">Wiki</a> | <a href="http://ci.tshock.co/">Latest Builds</a>
+    </div>
+        <div id="logo">
+        <img src="images/newlogo.png" height="80px" />
+            <p style="color: #000"><img src="images/icons/user_orange.png" />Logged in as $FUNC_USERNAME. <a style="color: #ce7c03" href="/logout">Log out</a></p>
+        </div>
+            <div id="subbar"></div>
+            <div id="nav-column">
+              <div id="navtop">
+              Navigation
+            </div>
+              <div id="navcontainer">
+             <ul>
+                    <li><a href="/?page=status"><img src="images/icons/computer.png" /> Server Info</a></li>
+                    <li><a href="/?page=console"><img src="images/icons/comments.png" /> Console</a></li>
+                    <li><a href="/?page=backups"><img src="images/icons/disk.png" /> Backups</a></li>
+            </ul>
+           </div>
+        </div>
+		<div id="news">
+            <div id="newstop">
+                    Userinfo
+                        <input type="button" value="Refresh" style="
+                                                color: #ce7c03;
+                                                background-color: #f9bc6d;
+                                                float: right;
+                                                font-size: 11px;
+                                                margin-right: 10px;
+                                                margin-top: 5px;
+                                                height: 20px;
+                                                border: solid 1px #ce7c03;
+                                                border-bottom-left-radius: 8px;
+                                                border-top-right-radius: 8px;"
+                                                onClick="window.location.reload()">                          
+            </div>
+              <form name="actions" action="/do" method="POST">
+                <input type="hidden" name="player" value="$PLAYER_NICKNAME">
+
+                    <table style="width: 525px;
+                                            margin-left: 10px;
+                                            margin-top: 10px;
+                                            margin-bottom: 10px;">
+                        <tr><td colspan="2"><h3>$PLAYER_NICKNAME</h3></td></tr>
+                        <tr><td><b>Registered Username</b></td><td>$PLAYER_USERNAME</td></tr>
+                        <tr><td><b>IP Address</b></td><td>$PLAYER_IP</td></tr>
+                        <tr><td><b>Group</b></td><td>$PLAYER_GROUP</td></tr>
+                        <tr><td>Position</td><td>$PLAYER_POSITION</td></tr>
+                        <tr><td colspan="2"><b>Buffs</b>
+   <table border="0">
+	 <tr>
+$_START  <td><img src="/images/buffs/$PLAYER_BUFF_#_NAME.png" alt="$PLAYER_BUFF_#_NAME" title="$PLAYER_BUFF_#_NAME"></td>
+$_END  
+  </tr></table></td></tr>
+
+
+ <tr><td colspan="2"><b>Inventory</b>
+<table border="1" style="border: 1px solid gray" style="width: 525px;" id="smaller">
+<tr>
+   <td align="center"><img src="$PLAYER_ITEM_1_IMAGE" alt="$PLAYER_ITEM_1_NAME" title="$PLAYER_ITEM_1_NAME"><br>${PLAYER_ITEM_1_QTY}x $PLAYER_ITEM_1_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_2_IMAGE" alt="$PLAYER_ITEM_2_NAME" title="$PLAYER_ITEM_2_NAME"><br>${PLAYER_ITEM_2_QTY}x $PLAYER_ITEM_2_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_3_IMAGE" alt="$PLAYER_ITEM_3_NAME" title="$PLAYER_ITEM_3_NAME"><br>${PLAYER_ITEM_3_QTY}x $PLAYER_ITEM_3_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_4_IMAGE" alt="$PLAYER_ITEM_4_NAME" title="$PLAYER_ITEM_4_NAME"><br>${PLAYER_ITEM_4_QTY}x $PLAYER_ITEM_4_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_5_IMAGE" alt="$PLAYER_ITEM_5_NAME" title="$PLAYER_ITEM_5_NAME"><br>${PLAYER_ITEM_5_QTY}x $PLAYER_ITEM_5_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_6_IMAGE" alt="$PLAYER_ITEM_6_NAME" title="$PLAYER_ITEM_6_NAME"><br>${PLAYER_ITEM_6_QTY}x $PLAYER_ITEM_6_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_7_IMAGE" alt="$PLAYER_ITEM_7_NAME" title="$PLAYER_ITEM_7_NAME"><br>${PLAYER_ITEM_7_QTY}x $PLAYER_ITEM_7_NAME</td>
+</tr>
+<tr>
+   <td align="center"><img src="$PLAYER_ITEM_8_IMAGE" alt="$PLAYER_ITEM_8_NAME" title="$PLAYER_ITEM_8_NAME"><br>${PLAYER_ITEM_8_QTY}x $PLAYER_ITEM_8_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_9_IMAGE" alt="$PLAYER_ITEM_9_NAME" title="$PLAYER_ITEM_9_NAME"><br>${PLAYER_ITEM_9_QTY}x $PLAYER_ITEM_9_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_10_IMAGE" alt="$PLAYER_ITEM_10_NAME" title="$PLAYER_ITEM_10_NAME"><br>${PLAYER_ITEM_10_QTY}x $PLAYER_ITEM_10_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_11_IMAGE" alt="$PLAYER_ITEM_11_NAME" title="$PLAYER_ITEM_11_NAME"><br>${PLAYER_ITEM_11_QTY}x $PLAYER_ITEM_11_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_12_IMAGE" alt="$PLAYER_ITEM_12_NAME" title="$PLAYER_ITEM_12_NAME"><br>${PLAYER_ITEM_12_QTY}x $PLAYER_ITEM_12_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_13_IMAGE" alt="$PLAYER_ITEM_13_NAME" title="$PLAYER_ITEM_13_NAME"><br>${PLAYER_ITEM_13_QTY}x $PLAYER_ITEM_13_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_14_IMAGE" alt="$PLAYER_ITEM_14_NAME" title="$PLAYER_ITEM_14_NAME"><br>${PLAYER_ITEM_14_QTY}x $PLAYER_ITEM_14_NAME</td>
+</tr>
+<tr>
+   <td align="center"><img src="$PLAYER_ITEM_15_IMAGE" alt="$PLAYER_ITEM_15_NAME" title="$PLAYER_ITEM_15_NAME"><br>${PLAYER_ITEM_15_QTY}x $PLAYER_ITEM_15_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_16_IMAGE" alt="$PLAYER_ITEM_16_NAME" title="$PLAYER_ITEM_16_NAME"><br>${PLAYER_ITEM_16_QTY}x $PLAYER_ITEM_16_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_17_IMAGE" alt="$PLAYER_ITEM_17_NAME" title="$PLAYER_ITEM_17_NAME"><br>${PLAYER_ITEM_17_QTY}x $PLAYER_ITEM_17_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_18_IMAGE" alt="$PLAYER_ITEM_18_NAME" title="$PLAYER_ITEM_18_NAME"><br>${PLAYER_ITEM_18_QTY}x $PLAYER_ITEM_18_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_19_IMAGE" alt="$PLAYER_ITEM_19_NAME" title="$PLAYER_ITEM_19_NAME"><br>${PLAYER_ITEM_19_QTY}x $PLAYER_ITEM_19_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_20_IMAGE" alt="$PLAYER_ITEM_20_NAME" title="$PLAYER_ITEM_20_NAME"><br>${PLAYER_ITEM_20_QTY}x $PLAYER_ITEM_20_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_21_IMAGE" alt="$PLAYER_ITEM_21_NAME" title="$PLAYER_ITEM_21_NAME"><br>${PLAYER_ITEM_21_QTY}x $PLAYER_ITEM_21_NAME</td>
+</tr>
+<tr>
+   <td align="center"><img src="$PLAYER_ITEM_22_IMAGE" alt="$PLAYER_ITEM_22_NAME" title="$PLAYER_ITEM_22_NAME"><br>${PLAYER_ITEM_22_QTY}x $PLAYER_ITEM_22_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_23_IMAGE" alt="$PLAYER_ITEM_23_NAME" title="$PLAYER_ITEM_23_NAME"><br>${PLAYER_ITEM_23_QTY}x $PLAYER_ITEM_23_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_24_IMAGE" alt="$PLAYER_ITEM_24_NAME" title="$PLAYER_ITEM_24_NAME"><br>${PLAYER_ITEM_24_QTY}x $PLAYER_ITEM_24_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_25_IMAGE" alt="$PLAYER_ITEM_25_NAME" title="$PLAYER_ITEM_25_NAME"><br>${PLAYER_ITEM_25_QTY}x $PLAYER_ITEM_25_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_26_IMAGE" alt="$PLAYER_ITEM_26_NAME" title="$PLAYER_ITEM_26_NAME"><br>${PLAYER_ITEM_26_QTY}x $PLAYER_ITEM_26_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_27_IMAGE" alt="$PLAYER_ITEM_27_NAME" title="$PLAYER_ITEM_27_NAME"><br>${PLAYER_ITEM_27_QTY}x $PLAYER_ITEM_27_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_28_IMAGE" alt="$PLAYER_ITEM_28_NAME" title="$PLAYER_ITEM_28_NAME"><br>${PLAYER_ITEM_28_QTY}x $PLAYER_ITEM_28_NAME</td>
+</tr>
+<tr>
+   <td align="center"><img src="$PLAYER_ITEM_29_IMAGE" alt="$PLAYER_ITEM_29_NAME" title="$PLAYER_ITEM_29_NAME"><br>${PLAYER_ITEM_29_QTY}x $PLAYER_ITEM_29_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_30_IMAGE" alt="$PLAYER_ITEM_30_NAME" title="$PLAYER_ITEM_30_NAME"><br>${PLAYER_ITEM_30_QTY}x $PLAYER_ITEM_30_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_31_IMAGE" alt="$PLAYER_ITEM_31_NAME" title="$PLAYER_ITEM_31_NAME"><br>${PLAYER_ITEM_31_QTY}x $PLAYER_ITEM_31_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_32_IMAGE" alt="$PLAYER_ITEM_32_NAME" title="$PLAYER_ITEM_32_NAME"><br>${PLAYER_ITEM_32_QTY}x $PLAYER_ITEM_32_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_33_IMAGE" alt="$PLAYER_ITEM_33_NAME" title="$PLAYER_ITEM_33_NAME"><br>${PLAYER_ITEM_33_QTY}x $PLAYER_ITEM_33_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_34_IMAGE" alt="$PLAYER_ITEM_34_NAME" title="$PLAYER_ITEM_34_NAME"><br>${PLAYER_ITEM_34_QTY}x $PLAYER_ITEM_34_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_35_IMAGE" alt="$PLAYER_ITEM_35_NAME" title="$PLAYER_ITEM_35_NAME"><br>${PLAYER_ITEM_35_QTY}x $PLAYER_ITEM_35_NAME</td>
+</tr>
+<tr>
+   <td align="center"><img src="$PLAYER_ITEM_36_IMAGE" alt="$PLAYER_ITEM_36_NAME" title="$PLAYER_ITEM_36_NAME"><br>${PLAYER_ITEM_36_QTY}x $PLAYER_ITEM_36_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_37_IMAGE" alt="$PLAYER_ITEM_37_NAME" title="$PLAYER_ITEM_37_NAME"><br>${PLAYER_ITEM_37_QTY}x $PLAYER_ITEM_37_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_38_IMAGE" alt="$PLAYER_ITEM_38_NAME" title="$PLAYER_ITEM_38_NAME"><br>${PLAYER_ITEM_38_QTY}x $PLAYER_ITEM_38_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_39_IMAGE" alt="$PLAYER_ITEM_39_NAME" title="$PLAYER_ITEM_39_NAME"><br>${PLAYER_ITEM_39_QTY}x $PLAYER_ITEM_39_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_40_IMAGE" alt="$PLAYER_ITEM_40_NAME" title="$PLAYER_ITEM_40_NAME"><br>${PLAYER_ITEM_40_QTY}x $PLAYER_ITEM_40_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_41_IMAGE" alt="$PLAYER_ITEM_41_NAME" title="$PLAYER_ITEM_41_NAME"><br>${PLAYER_ITEM_41_QTY}x $PLAYER_ITEM_41_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_42_IMAGE" alt="$PLAYER_ITEM_42_NAME" title="$PLAYER_ITEM_42_NAME"><br>${PLAYER_ITEM_42_QTY}x $PLAYER_ITEM_42_NAME</td>
+</tr>
+<tr>
+   <td align="center"><img src="$PLAYER_ITEM_43_IMAGE" alt="$PLAYER_ITEM_43_NAME" title="$PLAYER_ITEM_43_NAME"><br>${PLAYER_ITEM_43_QTY}x $PLAYER_ITEM_43_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_44_IMAGE" alt="$PLAYER_ITEM_44_NAME" title="$PLAYER_ITEM_44_NAME"><br>${PLAYER_ITEM_44_QTY}x $PLAYER_ITEM_44_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_45_IMAGE" alt="$PLAYER_ITEM_45_NAME" title="$PLAYER_ITEM_45_NAME"><br>${PLAYER_ITEM_45_QTY}x $PLAYER_ITEM_45_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_46_IMAGE" alt="$PLAYER_ITEM_46_NAME" title="$PLAYER_ITEM_46_NAME"><br>${PLAYER_ITEM_46_QTY}x $PLAYER_ITEM_46_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_47_IMAGE" alt="$PLAYER_ITEM_47_NAME" title="$PLAYER_ITEM_47_NAME"><br>${PLAYER_ITEM_47_QTY}x $PLAYER_ITEM_47_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_48_IMAGE" alt="$PLAYER_ITEM_48_NAME" title="$PLAYER_ITEM_48_NAME"><br>${PLAYER_ITEM_48_QTY}x $PLAYER_ITEM_48_NAME</td>
+   <td align="center"><img src="$PLAYER_ITEM_49_IMAGE" alt="$PLAYER_ITEM_49_NAME" title="$PLAYER_ITEM_49_NAME"><br>${PLAYER_ITEM_49_QTY}x $PLAYER_ITEM_49_NAME</td>
+</tr>
+   
+</table></td></tr>
+
+                        <tr><td colspan="2">
+
+                    <table border="0" style="font-size: 100%; width: 100%">
+                        <tr><td><input type="radio" name="action" value="mute" id="mute"><label for="mute">Mute player: $PLAYER_NICKNAME</label></td></tr>
+                        <tr><td><input type="radio" name="action" value="unmute" id="unmute"><label for="unmute">Unmute player: $PLAYER_NICKNAME</label></td></tr>
+	                    <tr><td><input type="radio" name="action" value="kill" id="kill"><label for="kill">Kill player: $PLAYER_NICKNAME</label></td></tr>
+                        <tr><td><input type="radio" name="action" value="kick" id="kick"><label for="kick">Kick player: $PLAYER_NICKNAME</label></td></tr>
+                        <tr><td><input type="radio" name="action" value="ban" id="ban"><label for="ban">Ban player: $PLAYER_NICKNAME</label></td></tr>
+	                    <tr><td>Reason <input type="text" name="reason" value=""></td></tr>
+                        <tr><td><input type="submit" value="Execute"></td></tr>	
+                 </table>
+                    </td></tr>
+                 </table>
+
+            </form>
+        </div>
+                                          <div id="playerlist">
+            <div id="navtop">
+                $SERVER_PLAYER_COUNT Player(s)
+            </div>
+		$_START
+        <p style="margin-left: 10px;
+                  margin-top: 10px;">
+				  <a href="/?page=userinfo&player=$SERVER_PLAYER_LIST_PLAYER_#" style="color: #222; font-size: 120%;">$SERVER_PLAYER_LIST_PLAYER_#</a></p>
+		$_END
+        </div>
+        <div id="footer">Template and Design by Gravemind | Zombiehouse 2008-2011</div>
+    </div>
+</div>
+</body>
+</html>
